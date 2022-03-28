@@ -4,7 +4,7 @@ import axios from 'axios'
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : []
-export const cartReducers = createSlice({
+export const cartReducerSlice = createSlice({
   name: 'CartItems',
   initialState: { cartItems: cartItemsFromStorage },
   reducers: {
@@ -66,5 +66,5 @@ const addToCart = (id, qty) => async (dispatch, getState) => {
 addToCart()
 
 export { addToCart, removeFromCart }
-export const { CART_ADD_ITEM, CART_REMOVE_ITEM } = cartReducers.actions
-export default cartReducers.reducer
+export const { CART_ADD_ITEM, CART_REMOVE_ITEM } = cartReducerSlice.actions
+export default cartReducerSlice.reducer

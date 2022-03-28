@@ -1,14 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import productListReducers from './reducers/productLisreducer'
-import productDetailReducer from './reducers/productDetailReducer'
-import cartReducers from './reducers/cartReducer'
+import productListSlice from './reducers/productLisreducer'
+import productDetailSlice from './reducers/productDetailReducer'
+import cartReducerSlice from './reducers/cartReducer'
+import userLoginSlice from './reducers/userReducers'
 
 export default configureStore({
   reducer: {
-    productList: productListReducers,
-    productDetail: productDetailReducer,
-    cart: cartReducers,
+    productList: productListSlice,
+    productDetail: productDetailSlice,
+    cart: cartReducerSlice,
+    userLogin: userLoginSlice,
   },
 })
 

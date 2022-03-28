@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { Link, useParams, useLocation } from 'react-router-dom'
+import { Link, useParams, useLocation, useNavigate } from 'react-router-dom'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../reducers/cartReducer'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+
 import {
   Row,
   Col,

@@ -11,6 +11,7 @@ import CartScreen from './screens/CartScreen'
 import ShippingScreen from './screens/shippingScreen'
 import reportWebVitals from './reportWebVitals'
 import HomeScreen from './screens/HomeScreen'
+import LoginScreen from './screens/LoginScreen'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Routes>
         <Route path='/' element={<App />}>
           <Route index element={<HomeScreen />} />
+          <Route path='/login' element={<LoginScreen />} />
           <Route path='product/:id' element={<ProductScreen />} />
           <Route path='cart/:id' element={<CartScreen />} />
           <Route path='shipping' element={<ShippingScreen />} />
