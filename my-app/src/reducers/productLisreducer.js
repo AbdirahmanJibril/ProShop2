@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 // product list slice
-export const productListReducers = createSlice({
+export const productListSlice = createSlice({
   name: 'productList',
   initialState: { products: [] },
   reducers: {
@@ -39,6 +39,6 @@ const getProducts = () => async dispatch => {
 getProducts()
 
 export { getProducts }
-export const { Request, Success, Fail } = productListReducers.actions
+export const { Request, Success, Fail } = productListSlice.actions
 
-export default productListReducers.reducer
+export default productListSlice.reducer

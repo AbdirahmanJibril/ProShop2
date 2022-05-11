@@ -1,8 +1,20 @@
 import React from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, Container } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import CartHeader from './CartHeader'
+import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap'
+import { logout } from '../reducers/userReducers/userLoginSlice'
 
 const Header = () => {
+  const dispatch = useDispatch()
+  const userLogin = useSelector(state => state.userLogin)
+
+  const { userInfo } = userLogin
+
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+
   return (
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
@@ -15,19 +27,30 @@ const Header = () => {
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='mx-auto'>
               <Nav.Item>
-                <LinkContainer to='/cart/:id'>
-                  <Nav.Link>
-                    <i className='fas fa-shopping-cart'></i> Cart
-                  </Nav.Link>
-                </LinkContainer>
+                {' '}
+                <Nav.Link href='/cart/:id'>
+                  <CartHeader />
+                </Nav.Link>
               </Nav.Item>
-              <Nav.Item>
-                <LinkContainer to='/login'>
-                  <Nav.Link>
-                    <i className='fas fa-shopping-cart'></i> Sing in
+
+              {userInfo ? (
+                <NavDropdown title={userInfo.name} id='username'>
+                  <Nav.Link href='/profile'>
+                    <NavDropdown.Item>Profile</NavDropdown.Item>
                   </Nav.Link>
-                </LinkContainer>
-              </Nav.Item>
+
+                  <NavDropdown.Item onClick={handleLogout}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <Nav.Item>
+                  <Nav.Link href='/login'>
+                    <i class='fa-solid fa-arrow-right-to-bracket fa-2x'></i>{' '}
+                    Sing in
+                  </Nav.Link>
+                </Nav.Item>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

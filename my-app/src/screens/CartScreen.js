@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { Link, useParams, useLocation } from 'react-router-dom'
+import { Link, useParams, useLocation, useNavigate } from 'react-router-dom'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../reducers/cartReducer'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+
 import {
   Row,
   Col,
@@ -20,6 +20,8 @@ const CartScreen = () => {
   let location = useLocation()
   const qty = location ? Number(location.search.split('=')[1]) : 1
   const newItems = useSelector(state => state.cart)
+  const userLogin = useSelector(state => state.userLogin)
+  const { userInfo } = userLogin
   const { cartItems } = newItems
   // load cart items
   const navigate = useNavigate()
@@ -37,7 +39,11 @@ const CartScreen = () => {
   }
 
   const checkoutHandler = () => {
-    navigate('/shipping')
+    if (userInfo) {
+      navigate('/shipping')
+    } else {
+      navigate('/login')
+    }
   }
 
   return (
