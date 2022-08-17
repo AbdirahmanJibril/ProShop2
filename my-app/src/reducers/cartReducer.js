@@ -4,9 +4,12 @@ import axios from 'axios'
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : []
+
 export const cartReducerSlice = createSlice({
   name: 'CartItems',
-  initialState: { cartItems: cartItemsFromStorage },
+  initialState: {
+    cartItems: cartItemsFromStorage,
+  },
   reducers: {
     CART_ADD_ITEM: (state, action) => {
       const item = action.payload
@@ -37,15 +40,21 @@ export const cartReducerSlice = createSlice({
         }),
       }
     },
+
+    CLEAR_CART_ITEMS: action => {
+      return { cartItems: {} }
+    },
   },
 })
 
+const clearCartItems = () => dispatch => {
+  dispatch(CLEAR_CART_ITEMS)
+  localStorage.removeItem('cartItems')
+}
 const removeFromCart = id => (dispatch, getState) => {
   dispatch(CART_REMOVE_ITEM(id))
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
-
-removeFromCart()
 
 const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`)
@@ -63,8 +72,11 @@ const addToCart = (id, qty) => async (dispatch, getState) => {
 
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
+
+removeFromCart()
 addToCart()
 
-export { addToCart, removeFromCart }
-export const { CART_ADD_ITEM, CART_REMOVE_ITEM } = cartReducerSlice.actions
+export { addToCart, removeFromCart, clearCartItems }
+export const { CART_ADD_ITEM, CART_REMOVE_ITEM, CLEAR_CART_ITEMS } =
+  cartReducerSlice.actions
 export default cartReducerSlice.reducer

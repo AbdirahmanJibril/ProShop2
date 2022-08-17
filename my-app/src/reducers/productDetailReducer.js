@@ -6,15 +6,15 @@ export const productDetailSlice = createSlice({
   name: 'productDetail',
   initialState: { product: {}, review: {} },
   reducers: {
-    Request: state => {
-      state.status = 'loading'
+    REQUEST: state => {
+      state.status = 'LOADING'
     },
-    Success: (state, action) => {
-      state.status = 'complete'
+    SUCCESS: (state, action) => {
+      state.status = 'SUCCESS'
       state.product = action.payload
     },
-    Fail: (state, action) => {
-      state.status = 'failed'
+    FAIL: (state, action) => {
+      state.status = 'FAIL'
       state.error = action.payload
     },
   },
@@ -23,12 +23,12 @@ export const productDetailSlice = createSlice({
 // thunk function - product action - fetches data from database via backend
 const getProduct = id => async dispatch => {
   try {
-    dispatch(Request())
+    dispatch(REQUEST())
     const { data } = await axios.get(`/api/products/${id}`)
-    dispatch(Success(data))
+    dispatch(SUCCESS(data))
   } catch (error) {
     dispatch(
-      Fail(
+      FAIL(
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message
@@ -39,6 +39,6 @@ const getProduct = id => async dispatch => {
 getProduct()
 
 export { getProduct }
-export const { Request, Success, Fail } = productDetailSlice.actions
+export const { REQUEST, SUCCESS, FAIL } = productDetailSlice.actions
 
 export default productDetailSlice.reducer

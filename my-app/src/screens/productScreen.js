@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { useParams, useNavigate, Outlet } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProduct } from '../reducers/productDetailReducer'
 import Loader from '../components/Loader'
@@ -26,12 +26,12 @@ const ProductScreen = () => {
   useEffect(() => {
     dispatch(getProduct(id))
   }, [dispatch, id])
-
   const navigate = useNavigate()
 
   const cartHandler = () => {
-    dispatch(addToCart(id, qty))
-    navigate('/cart/:id')
+    dispatch(addToCart(id, Number(qty)))
+
+    navigate('/cart')
   }
 
   return (
@@ -110,7 +110,6 @@ const ProductScreen = () => {
           </Col>
         </Row>
       )}
-      <Outlet />
     </div>
   )
 }

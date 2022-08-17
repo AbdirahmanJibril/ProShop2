@@ -12,6 +12,7 @@ import {
   Form,
   Button,
   ListGroupItem,
+  Container,
 } from 'react-bootstrap'
 
 const CartScreen = () => {
@@ -19,10 +20,12 @@ const CartScreen = () => {
   const dispatch = useDispatch()
   let location = useLocation()
   const qty = location ? Number(location.search.split('=')[1]) : 1
+
   const newItems = useSelector(state => state.cart)
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
   const { cartItems } = newItems
+
   // load cart items
   const navigate = useNavigate()
   useEffect(() => {
@@ -54,17 +57,20 @@ const CartScreen = () => {
             Your cart is empty <Link to='/'>Go Back</Link>
           </Message>
         ) : (
-          <Row>
+          <Container fluid>
             {cartItems.map(item => (
-              <Col md={4}>
-                <Card>
-                  <Link to={`/product/${item.product}`}>
-                    <Card.Img src={item.image} alt={item.name} />
-                  </Link>
-                  <Card.Body>
-                    <Card.Title>
+              <Container fluid key={item.product}>
+                <Row>
+                  <Col sm={3}>
+                    <Link to={`/product/${item.product}`}>
+                      <Card.Img src={item.image} alt={item.name} />
+                    </Link>
+                  </Col>
+                  <Col sm={6}>
+                    <h5>
+                      {' '}
                       <Link to={`/product/${item.product}`}>{item.name}</Link>
-                    </Card.Title>
+                    </h5>
 
                     <ListGroup className='list-group-flush'>
                       <ListGroupItem as='h5'>${item.price}</ListGroupItem>
@@ -77,29 +83,27 @@ const CartScreen = () => {
                               addToCart(item.product, Number(e.target.value))
                             )
                           }>
-                          {[...Array(item.countInStock).keys()].map(y => {
-                            return (
-                              <option key={y + 1} value={y + 1}>
-                                {y + 1}
-                              </option>
-                            )
-                          })}
+                          {[...Array(item.countInStock).keys()].map(x => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
                         </Form.Select>
                       </ListGroupItem>
-                      <div className='d-grid gap-2'>
-                        <Button
-                          type='button'
-                          variant='dark'
-                          onClick={() => removeFromCartHandler(item.product)}>
-                          Remove
-                        </Button>
-                      </div>
                     </ListGroup>
-                  </Card.Body>
-                </Card>
-              </Col>
+                  </Col>
+                  <Col sm={3}>
+                    <Button
+                      variant='light'
+                      type='button'
+                      onClick={() => removeFromCartHandler(item.product)}>
+                      <i className='fa-solid fa-trash-can fa-lg'></i>
+                    </Button>
+                  </Col>
+                </Row>
+              </Container>
             ))}
-          </Row>
+          </Container>
         )}
       </Col>
 
@@ -108,11 +112,14 @@ const CartScreen = () => {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
-                Subtotal ({' '}
+                Subtotal (
                 {cartItems.reduce((acc, item) => {
-                  return acc + item.qty
+                  return Number(acc + item.qty)
                 }, 0)}{' '}
-                ) items
+                )
+                {cartItems.reduce((counter, item) => {
+                  return counter + item.qty === 1 ? 'item' : 'items'
+                }, 0)}
               </h2>
               <h4>
                 $ (

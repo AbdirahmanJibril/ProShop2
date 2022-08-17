@@ -28,7 +28,7 @@ const orderSchema = new mongoose.Schema(
       country: { type: String, required: true },
     },
 
-    payment: {
+    paymentMethod: {
       type: String,
       required: true,
     },
@@ -53,7 +53,7 @@ const orderSchema = new mongoose.Schema(
       required: true,
       default: 0.0,
     },
-    isPiad: {
+    isPaid: {
       type: Boolean,
       required: true,
       default: false,

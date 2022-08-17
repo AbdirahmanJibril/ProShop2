@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { registerShipping } from '../shippingRducer'
 
 //local storage set with user data
 const userInfoFromStorage = localStorage.getItem('userInfo')
@@ -60,8 +59,7 @@ login()
 
 const logout = () => async dispatch => {
   dispatch(USER_LOGOUT())
-
-  localStorage.clear()
+  localStorage.removeItem('userInfo')
 }
 
 logout()

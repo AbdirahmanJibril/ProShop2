@@ -28,16 +28,14 @@ const Header = () => {
             <Nav className='mx-auto'>
               <Nav.Item>
                 {' '}
-                <Nav.Link href='/cart/:id'>
+                <Nav.Link href='/cart'>
                   <CartHeader />
                 </Nav.Link>
               </Nav.Item>
 
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
-                  <Nav.Link href='/profile'>
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </Nav.Link>
+                  <NavDropdown.Item href='/profile'> Profile</NavDropdown.Item>
 
                   <NavDropdown.Item onClick={handleLogout}>
                     Logout
@@ -46,7 +44,7 @@ const Header = () => {
               ) : (
                 <Nav.Item>
                   <Nav.Link href='/login'>
-                    <i class='fa-solid fa-arrow-right-to-bracket fa-2x'></i>{' '}
+                    <i className='fa-solid fa-arrow-right-to-bracket fa-2x'></i>{' '}
                     Sing in
                   </Nav.Link>
                 </Nav.Item>
