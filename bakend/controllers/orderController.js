@@ -84,6 +84,7 @@ const getMyOrders = asyncHandler(async (req, res) => {
   res.json(orders)
 })
 
+<<<<<<< HEAD
 // @desc    Get all user orders Admin only
 // @route   GET /api/orders
 // @access  Private/Admin
@@ -119,3 +120,6 @@ export {
   getOrders,
   updateOrderToDelivered,
 }
+=======
+export { orderCreate, getOrderById, updateOrderToPaid, getMyOrders }
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7

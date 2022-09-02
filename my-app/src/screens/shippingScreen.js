@@ -8,11 +8,19 @@ import { registerShipping } from '../reducers/shippingRducer'
 
 const ShippingScreen = () => {
   const shipping = useSelector(state => state.shipping)
+<<<<<<< HEAD
 
   const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
   const [postalCode, setPostalCode] = useState()
   const [country, setCountry] = useState('')
+=======
+  const { Shipping } = shipping
+  const [address, setAddress] = useState(Shipping.address)
+  const [city, setCity] = useState(Shipping.city)
+  const [postalCode, setPostalCode] = useState(Shipping.postalCode)
+  const [country, setCountry] = useState(Shipping.country)
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
   const navigate = useNavigate()
   const dispatch = useDispatch()

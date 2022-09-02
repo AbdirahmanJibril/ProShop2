@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+<<<<<<< HEAD
 import { clearUserDetail } from './userDetailSlice'
+=======
+import { registerShipping } from '../shippingRducer'
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
 //local storage set with user data
 const userInfoFromStorage = localStorage.getItem('userInfo')
@@ -60,7 +64,10 @@ login()
 
 const logout = () => async dispatch => {
   dispatch(USER_LOGOUT())
+<<<<<<< HEAD
   dispatch(clearUserDetail())
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
   localStorage.clear()
 }

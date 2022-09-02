@@ -58,6 +58,10 @@ const createOrder = newOrder => async (dispatch, getState) => {
 }
 const clearOrder = () => async dispatch => {
   dispatch(ORDER_CLEAR_ITEMS())
+<<<<<<< HEAD
+=======
+  localStorage.removeItem('cartItems')
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 }
 createOrder()
 clearOrder()

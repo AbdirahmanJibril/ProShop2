@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react'
+=======
+import React from 'react'
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 import {
   Alert,
   Button,
@@ -15,6 +19,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../reducers/orderReucer'
+<<<<<<< HEAD
 import {
   getOrderDetails,
   ORDER_DETAILS_RESET,
@@ -22,6 +27,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { removeFromCart } from '../reducers/cartReducer'
 import { USER_DETAILS_RESET } from '../reducers/userReducers/userDetailSlice'
+=======
+import { getOrderDetails } from '../reducers/orderDetailReducer'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { removeFromCart } from '../reducers/cartReducer'
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
 const PlaceOrderScreen = () => {
   const dispatch = useDispatch()
@@ -33,7 +43,10 @@ const PlaceOrderScreen = () => {
 
   const payment = useSelector(state => state.payment)
   const { Payment } = payment
+<<<<<<< HEAD
 
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
   const confirmedOrder = useSelector(state => state.createdOrder)
   const { order } = confirmedOrder
 
@@ -68,6 +81,7 @@ const PlaceOrderScreen = () => {
       })
     )
   }
+<<<<<<< HEAD
   useEffect(() => {
     dispatch(USER_DETAILS_RESET())
     dispatch(ORDER_DETAILS_RESET())
@@ -75,6 +89,11 @@ const PlaceOrderScreen = () => {
     dispatch(getOrderDetails(order._id))
   }, [dispatch, confirmedOrder.status])
 
+=======
+  if (confirmedOrder.status === 'SUCCESS') {
+    dispatch(getOrderDetails(order._id))
+  }
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
   const goToPayment = () => {
     navigate(`/viewOrder/${order._id}`)
   }
@@ -130,6 +149,7 @@ const PlaceOrderScreen = () => {
                         <Col>
                           <Button variant='light' type='button'></Button>
                         </Col>
+<<<<<<< HEAD
                         {confirmedOrder.status !== 'SUCCESS' && (
                           <Col>
                             <Button
@@ -145,6 +165,19 @@ const PlaceOrderScreen = () => {
                             </Button>
                           </Col>
                         )}
+=======
+                        <Col>
+                          <Button
+                            variant='light'
+                            type='button'
+                            onClick={() => removeFromCartHandler(item.product)}>
+                            <FontAwesomeIcon
+                              icon='fa-regular fa-trash-can'
+                              size='lg'
+                            />
+                          </Button>
+                        </Col>
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
                       </Row>
                     </ListGroup.Item>
                   ))}

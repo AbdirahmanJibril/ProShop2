@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { login } from '../reducers/userReducers/userLoginSlice'
+<<<<<<< HEAD
 import { getOrderList } from '../reducers/OrderListSlice'
+=======
+
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -21,8 +25,11 @@ const LoginScreen = () => {
   useEffect(() => {
     if (userInfo) {
       navigate(redirect)
+<<<<<<< HEAD
     } else {
       navigate('/login')
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
     }
   }, [userInfo, redirect, navigate])
 

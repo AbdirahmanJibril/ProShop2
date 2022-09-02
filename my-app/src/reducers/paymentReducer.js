@@ -8,10 +8,14 @@ export const paymentSlice = createSlice({
   initialState: { Payment: paymentDetailFromStorage },
   reducers: {
     REGISTER_PAYMENT: (state, action) => {
+<<<<<<< HEAD
       return {
         ...state,
         Payment: action.payload,
       }
+=======
+      state.Payment = action.payload
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
     },
   },
 })

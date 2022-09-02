@@ -14,15 +14,22 @@ export const myOrderListSlice = createSlice({
     },
     MY_ORDER_LIST_FAIL: (state, action) => {
       state.status = 'FAIL'
+<<<<<<< HEAD
       state.error = action.payload
     },
     MY_ORDERS_LIST_RESET: (state, action) => {
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
       state.orders = action.payload
     },
   },
 })
 
+<<<<<<< HEAD
 const getMyOrderList = () => async (dispatch, getState) => {
+=======
+const getMyOrderList = id => async (dispatch, getState) => {
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
   try {
     dispatch(MY_ORDER_LIST_REQUEST())
 
@@ -50,18 +57,27 @@ const getMyOrderList = () => async (dispatch, getState) => {
   }
 }
 
+<<<<<<< HEAD
 const resetMyOrderList = () => async dispatch => {
   dispatch(MY_ORDERS_LIST_RESET())
 }
 getMyOrderList()
 resetMyOrderList()
 export { getMyOrderList, resetMyOrderList }
+=======
+getMyOrderList()
+
+export { getMyOrderList }
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
 export const {
   MY_ORDER_LIST_REQUEST,
   MY_ORDER_LIST_SUCCESS,
   MY_ORDER_LIST_FAIL,
+<<<<<<< HEAD
   MY_ORDERS_LIST_RESET,
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 } = myOrderListSlice.actions
 
 export default myOrderListSlice.reducer

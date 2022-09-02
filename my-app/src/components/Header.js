@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CartHeader from './CartHeader'
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap'
 import { logout } from '../reducers/userReducers/userLoginSlice'
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom'
 import { clearOrder } from '../reducers/orderReucer'
 import { clearCartItems } from '../reducers/cartReducer'
@@ -11,6 +12,8 @@ import {
   clearUserDetail,
   getUserProfile,
 } from '../reducers/userReducers/userDetailSlice'
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -37,9 +40,15 @@ const Header = () => {
             <Navbar.Brand>Proshop</Navbar.Brand>
           </LinkContainer>
 
+<<<<<<< HEAD
           <Navbar.Toggle aria-controls='basic-navbar-nav ' />
           <Navbar.Collapse id='basic-navbar-nav '>
             <Nav className='ms-auto'>
+=======
+          <Navbar.Toggle aria-controls='basic-navbar-nav' />
+          <Navbar.Collapse id='basic-navbar-nav'>
+            <Nav className='mx-auto'>
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
               <Nav.Item>
                 {' '}
                 <Nav.Link href='/cart'>
@@ -49,6 +58,7 @@ const Header = () => {
 
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
+<<<<<<< HEAD
                   <NavDropdown.Item href='/profile'>
                     My Profile
                   </NavDropdown.Item>
@@ -56,6 +66,9 @@ const Header = () => {
                   <NavDropdown.Item href='/myorders'>
                     My Orders
                   </NavDropdown.Item>
+=======
+                  <NavDropdown.Item href='/profile'> Profile</NavDropdown.Item>
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
                   <NavDropdown.Item onClick={handleLogout}>
                     Logout
@@ -68,6 +81,7 @@ const Header = () => {
                     Sing in
                   </Nav.Link>
                 </Nav.Item>
+<<<<<<< HEAD
               )}
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminmenu'>
@@ -81,6 +95,8 @@ const Header = () => {
                     <NavDropdown.Item>Orders</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
               )}
             </Nav>
           </Navbar.Collapse>

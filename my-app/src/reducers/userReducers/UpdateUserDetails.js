@@ -21,9 +21,12 @@ export const updateUserProfileSlice = createSlice({
       state.status = 'UPDATE_USER_PROFILE FAILED'
       state.error = action.payload
     },
+<<<<<<< HEAD
     UPDATE_USER_PROFILE_RESET: state => {
       return {}
     },
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
   },
 })
 
@@ -31,7 +34,11 @@ export const updateUserProfileSlice = createSlice({
 
 const updateUserProfile = user => async (dispatch, getState) => {
   try {
+<<<<<<< HEAD
     dispatch(UPDATE_USER_PROFILE_RESET())
+=======
+    dispatch(UPDATE_USER_PROFILE_REQUREST())
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
     const {
       userLogin: { userInfo },
@@ -55,6 +62,7 @@ const updateUserProfile = user => async (dispatch, getState) => {
     )
   }
 }
+<<<<<<< HEAD
 
 const updateUserProfileReset = () => async dispatch => {
   dispatch(UPDATE_USER_PROFILE_REQUREST())
@@ -63,11 +71,18 @@ updateUserProfile()
 updateUserProfileReset()
 
 export { updateUserProfile, updateUserProfileReset }
+=======
+updateUserProfile()
+export { updateUserProfile }
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 export const {
   UPDATE_USER_PROFILE_REQUREST,
   UPDATE_USER_PROFILE_SUCCESS,
   UPDATE_USER_PROFILE_FAIL,
+<<<<<<< HEAD
   UPDATE_USER_PROFILE_RESET,
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 } = updateUserProfileSlice.actions
 
 export default updateUserProfileSlice.reducer

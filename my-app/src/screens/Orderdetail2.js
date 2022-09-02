@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+<<<<<<< HEAD
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { payOrder } from '../reducers/orderPayReducer'
@@ -33,10 +34,28 @@ const Orderdetail2 = () => {
 
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
+=======
+import { Link, useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { payOrder } from '../reducers/orderPayReducer'
+import { getOrderDetails } from '../reducers/orderDetailReducer'
+import { PayPalButton } from 'react-paypal-button-v2'
+import { ListGroup, Row, Col, Card, Image, Alert } from 'react-bootstrap'
+
+const Orderdetail2 = () => {
+  const params = useParams()
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getOrderDetails(params.id))
+  }, [dispatch, params.id])
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
   const orderSuccess = useSelector(state => state.viewOrderDetail)
   const { orderDetail } = orderSuccess
 
+<<<<<<< HEAD
   const itemsPrice = orderSuccess.orderDetail.orderItems.reduce(
     (acc, item) => acc + item.price * item.qty,
     0
@@ -62,15 +81,36 @@ const Orderdetail2 = () => {
   const deliverHandler = () => {
     dispatch(deliverOrder(orderDetail))
   }
+=======
+  console.log(orderDetail)
+
+  const paidOrder = useSelector(state => state.orderpay)
+
+  const itemsPrice = orderDetail.orderItems.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
+  )
+
+  const successPaymentHandler = paymentResult => {
+    dispatch(payOrder(orderDetail._id, paymentResult))
+    dispatch(getOrderDetails(orderDetail._id))
+  }
+
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
   return (
     <>
       <Row>
         <h1 style={{ textAlign: 'left', margin: '10px auto' }}>
+<<<<<<< HEAD
           Order {orderSuccess.orderDetail._id}
+=======
+          Order {orderDetail._id}
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
         </h1>
         <Col md={8}>
           <ListGroup.Item style={{ textAlign: 'left', margin: '30px auto' }}>
             <h2>Shipping</h2>
+<<<<<<< HEAD
             <h5>Name: {orderSuccess.orderDetail.user.name}</h5>
             <h5>Email: {orderSuccess.orderDetail.user.email}</h5>
             <h5>
@@ -78,13 +118,28 @@ const Orderdetail2 = () => {
               {orderSuccess.orderDetail.shippingAddress.city},
               {orderSuccess.orderDetail.shippingAddress.postalCode},
               {orderSuccess.orderDetail.shippingAddress.country}
+=======
+            <h5>Name: {orderDetail.user.name}</h5>
+            <h5>Email: {orderDetail.user.email}</h5>
+            <h5>
+              Address: {orderDetail.shippingAddress.address},
+              {orderDetail.shippingAddress.city},
+              {orderDetail.shippingAddress.postalCode},
+              {orderDetail.shippingAddress.country}
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
             </h5>
           </ListGroup.Item>
 
           <ListGroup.Item style={{ textAlign: 'left', margin: '30px auto' }}>
+<<<<<<< HEAD
             {orderSuccess.orderDetail.isDelivered ? (
               <Alert variant='success'>
                 Delivered on {orderSuccess.orderDetail.deliveredAt}
+=======
+            {orderDetail.isDelivered ? (
+              <Alert variant='success'>
+                Delivered on {orderDetail.deliveredAt}
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
               </Alert>
             ) : (
               <Alert variant='danger'>Not Delivered</Alert>
@@ -94,25 +149,40 @@ const Orderdetail2 = () => {
           <ListGroup.Item style={{ textAlign: 'left', margin: '30px auto' }}>
             <h2>Payment Method</h2>
             <div>
+<<<<<<< HEAD
               <p>Payment Method: {orderSuccess.orderDetail.paymentMethod}</p>
             </div>
             {orderSuccess.orderDetail.isPaid ? (
               <Alert variant='success'>
                 Paid at {orderSuccess.orderDetail.paidAt.substring(0, 10)}
               </Alert>
+=======
+              <p>Payment Method: {orderDetail.paymentMethod}</p>
+            </div>
+            {orderDetail.isPaid ? (
+              <Alert variant='success'>Paid at {orderDetail.paidAt}</Alert>
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
             ) : (
               <Alert variant='danger'>Not Paid</Alert>
             )}
           </ListGroup.Item>
           <ListGroup.Item style={{ textAlign: 'left', margin: '30px auto' }}>
             <h2>Order Items</h2>
+<<<<<<< HEAD
             {orderSuccess.orderDetail.orderItems.length === 0 ? (
+=======
+            {orderDetail.orderItems.length === 0 ? (
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
               <Alert>Order is empty</Alert>
             ) : (
               <ListGroup
                 variant='flush'
                 style={{ textAlign: 'left', margin: '30px auto' }}>
+<<<<<<< HEAD
                 {orderSuccess.orderDetail.orderItems.map((item, index) => (
+=======
+                {orderDetail.orderItems.map((item, index) => (
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
                   <ListGroup.Item key={index}>
                     <Row>
                       <Col md={1}>
@@ -140,24 +210,37 @@ const Orderdetail2 = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
+<<<<<<< HEAD
                   <Col>$ {itemsPrice}</Col>
+=======
+                  <Col>${itemsPrice}</Col>
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shippin charge</Col>
+<<<<<<< HEAD
                   <Col>$ {orderSuccess.orderDetail.shippingPrice}</Col>
+=======
+                  <Col>${orderDetail.shippingPrice}</Col>
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
+<<<<<<< HEAD
                   <Col>$ {orderSuccess.orderDetail.taxPrice}</Col>
+=======
+                  <Col>${orderDetail.taxPrice}</Col>
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
+<<<<<<< HEAD
                   <Col>$ {orderSuccess.orderDetail.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
@@ -191,15 +274,49 @@ const Orderdetail2 = () => {
                 userInfo.isAdmin &&
                 orderDetail.isPaid &&
                 !orderDetail.isDelivered && (
+=======
+                  <Col>${orderDetail.totalPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+              {!orderDetail.isPaid ? (
+                <ListGroup.Item>
+                  <PayPalButton
+                    options={{
+                      'client-id': process.env.REACT_APP_PAYPAL_CLIENT_ID,
+                    }}
+                    amount={orderDetail.totalPrice}
+                    onSuccess={successPaymentHandler}></PayPalButton>
+                </ListGroup.Item>
+              ) : (
+                <ListGroup.Item variant='flush'>
+                  <Alert variant='success'>{paidOrder.status}</Alert>
+                </ListGroup.Item>
+              )}
+
+              {/* {loadingDeliver && <Loader />}
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
                   <ListGroup.Item>
                     <Button
                       type='button'
                       className='btn btn-block'
+<<<<<<< HEAD
                       onClick={deliverHandler}>
                       Mark As Delivered
                     </Button>
                   </ListGroup.Item>
                 )}
+=======
+                      onClick={deliverHandler}
+                    >
+                      Mark As Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )} */}
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
             </ListGroup>
           </Card>
         </Col>

@@ -95,6 +95,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     throw new Error('Error User Not Found')
   }
 })
+<<<<<<< HEAD
 
 // @desc    Get all users
 // @route   GET /api/users
@@ -168,3 +169,6 @@ export {
   getUserById,
   updateUser,
 }
+=======
+export { authUser, registerUser, userProfile, updateUserProfile }
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7

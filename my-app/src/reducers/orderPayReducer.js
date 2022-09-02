@@ -19,7 +19,11 @@ export const orderPaySlice = createSlice({
     },
     ORDER_PAY_RESET: (state, action) => {
       state.status = 'RESET'
+<<<<<<< HEAD
       state.Pay = {}
+=======
+      action.payload = {}
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
     },
   },
 })
@@ -58,11 +62,14 @@ export const payOrder =
       dispatch(ORDER_PAY_FAIL())
     }
   }
+<<<<<<< HEAD
 export const orderPayReset = () => async dispatch => {
   dispatch(ORDER_PAY_RESET())
 }
 payOrder()
 orderPayReset()
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
 export const {
   ORDER_PAY_FAIL,

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+<<<<<<< HEAD
 const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null
@@ -22,6 +23,27 @@ export const userProfileSlice = createSlice({
     },
     USER_DETAILS_RESET: state => {
       state.user = {}
+=======
+//local storage set with user data
+// const userInfoFromStorage = localStorage.getItem('userInfo')
+//   ? JSON.parse(localStorage.getItem('userInfo'))
+//   : null
+
+export const userProfileSlice = createSlice({
+  name: 'userProfile',
+  initialState: { user: {} },
+  reducers: {
+    USER_PROFILE_REQUREST: state => {
+      state.status = 'USER_PROFILE REQUEST'
+    },
+    USER_PROFILE_SUCCESS: (state, action) => {
+      state.status = 'USER_PROFILE SUCCESS'
+      state.user = action.payload
+    },
+    USER_PROFILE_FAIL: (state, action) => {
+      state.status = 'USER_PROFILE FAILED'
+      state.error = action.payload
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
     },
   },
 })
@@ -43,7 +65,11 @@ const getUserProfile = id => async (dispatch, getState) => {
     const { data } = await axios.get(`/api/users/${id}`, config)
     dispatch(USER_PROFILE_SUCCESS(data))
 
+<<<<<<< HEAD
     localStorage.setItem('userInfo', JSON.stringify(data))
+=======
+    // localStorage.setItem('userInfo', JSON.stringify(data))
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
   } catch (error) {
     dispatch(
       USER_PROFILE_FAIL(
@@ -54,6 +80,7 @@ const getUserProfile = id => async (dispatch, getState) => {
     )
   }
 }
+<<<<<<< HEAD
 const clearUserDetail = () => async dispatch => {
   dispatch(USER_DETAILS_RESET())
 }
@@ -61,11 +88,18 @@ const clearUserDetail = () => async dispatch => {
 getUserProfile()
 
 export { getUserProfile, clearUserDetail }
+=======
+getUserProfile()
+export { getUserProfile }
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 export const {
   USER_PROFILE_REQUREST,
   USER_PROFILE_SUCCESS,
   USER_PROFILE_FAIL,
+<<<<<<< HEAD
   USER_DETAILS_RESET,
+=======
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 } = userProfileSlice.actions
 
 export default userProfileSlice.reducer

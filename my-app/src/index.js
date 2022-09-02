@@ -17,12 +17,16 @@ import Profile from './screens/Profile'
 import PaymentScreen from './screens/PaymentScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import Orderdetail2 from './screens/Orderdetail2'
+<<<<<<< HEAD
 import UserListScreen from './screens/UserListScreen'
 import UserEditScreen from './screens/UserEditScreen'
 import MyOrders from './screens/MyOrders'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderList from './screens/OrderList'
+=======
+import OrderStatus from './screens/OrderStatus'
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
 
 ReactDOM.render(
   <Provider store={store}>
@@ -38,6 +42,7 @@ ReactDOM.render(
           <Route path='shipping' element={<ShippingScreen />} />
           <Route path='payment' element={<PaymentScreen />} />
           <Route path='placeorder' element={<PlaceOrderScreen />} />
+<<<<<<< HEAD
           <Route path='admin/orderlist' element={<OrderList />} />
           {/* <Route path='admin/orders/:id' element={<OrderListDetail/>}/> */}
           <Route path='viewOrder/:id' element={<Orderdetail2 />} />
@@ -51,6 +56,10 @@ ReactDOM.render(
           <Route path='admin/productlist' element={<ProductListScreen />} />
 
           <Route path='/myorders' element={<MyOrders />} />
+=======
+          <Route path='viewOrder/:id' element={<Orderdetail2 />} />
+          <Route path='status/:id' element={<OrderStatus />} />
+>>>>>>> b5b01b4bda59fb890e8f98da7b2d30f5ca984fe7
         </Route>
       </Routes>
     </BrowserRouter>
