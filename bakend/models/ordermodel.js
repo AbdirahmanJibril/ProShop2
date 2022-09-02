@@ -28,7 +28,7 @@ const orderSchema = new mongoose.Schema(
       country: { type: String, required: true },
     },
 
-    payment: {
+    paymentMethod: {
       type: String,
       required: true,
     },
@@ -37,6 +37,11 @@ const orderSchema = new mongoose.Schema(
       status: { type: String },
       update_time: { type: String },
       email_address: { type: String },
+    },
+    itemsPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
     },
     taxPrice: {
       type: Number,
@@ -53,7 +58,7 @@ const orderSchema = new mongoose.Schema(
       required: true,
       default: 0.0,
     },
-    isPiad: {
+    isPaid: {
       type: Boolean,
       required: true,
       default: false,

@@ -1,18 +1,18 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { useSelector } from 'react-redux'
 const CartHeader = () => {
-  const newItems = useSelector(state => state.cart)
-  const { cartItems } = newItems
+  const items = useSelector(state => state.cart)
+
   return (
     <div>
-      <span class='fa-layers fa-fw' style={{ fontSize: '30px' }}>
-        <i class='fa-solid fa-cart-shopping '></i>
-        {cartItems && cartItems.length > 0 ? (
-          <span
-            class='fa-layers-counter '
-            style={{ fontSize: '40px', verticalAlign: 'super' }}>
-            {cartItems.reduce((acc, item) => {
-              return acc + item.qty
+      <span className='fa-layers fa-fw fa-2x'>
+        <i className='fa-solid fa-cart-shopping'></i>
+        {items.cartItems && items.cartItems.length > 0 ? (
+          <span className='fa-layers-counter fa-layers-top-right fa-2x'>
+            {items.cartItems.reduce((acc, item) => {
+              return Number(acc + item.qty)
             }, 0)}
           </span>
         ) : null}

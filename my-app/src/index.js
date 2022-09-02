@@ -13,6 +13,16 @@ import reportWebVitals from './reportWebVitals'
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
+import Profile from './screens/Profile'
+import PaymentScreen from './screens/PaymentScreen'
+import PlaceOrderScreen from './screens/PlaceOrderScreen'
+import Orderdetail2 from './screens/Orderdetail2'
+import UserListScreen from './screens/UserListScreen'
+import UserEditScreen from './screens/UserEditScreen'
+import MyOrders from './screens/MyOrders'
+import ProductListScreen from './screens/ProductListScreen'
+import ProductEditScreen from './screens/ProductEditScreen'
+import OrderList from './screens/OrderList'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -21,10 +31,26 @@ ReactDOM.render(
         <Route path='/' element={<App />}>
           <Route index element={<HomeScreen />} />
           <Route path='/login' element={<LoginScreen />} />
+          <Route path='/profile' element={<Profile />} />
           <Route path='/register' element={<RegisterScreen />} />
           <Route path='product/:id' element={<ProductScreen />} />
-          <Route path='cart/:id' element={<CartScreen />} />
+          <Route path='cart' element={<CartScreen />} />
           <Route path='shipping' element={<ShippingScreen />} />
+          <Route path='payment' element={<PaymentScreen />} />
+          <Route path='placeorder' element={<PlaceOrderScreen />} />
+          <Route path='admin/orderlist' element={<OrderList />} />
+          {/* <Route path='admin/orders/:id' element={<OrderListDetail/>}/> */}
+          <Route path='viewOrder/:id' element={<Orderdetail2 />} />
+
+          <Route path='admin/userlist' element={<UserListScreen />} />
+          <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
+          <Route
+            path='/admin/product/:id/edit'
+            element={<ProductEditScreen />}
+          />
+          <Route path='admin/productlist' element={<ProductListScreen />} />
+
+          <Route path='/myorders' element={<MyOrders />} />
         </Route>
       </Routes>
     </BrowserRouter>
