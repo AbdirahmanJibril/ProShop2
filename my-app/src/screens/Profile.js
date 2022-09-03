@@ -4,10 +4,11 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Button, Form, Row, Col, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile } from '../reducers/userReducers/userDetailSlice'
-import { updateUserProfile } from '../reducers/userReducers/UpdateUserDetails'
-import { getMyOrderList } from '../reducers/MyOrdersReducer'
+import { updateUserProfileReset } from '../reducers/userReducers/UpdateUserDetails'
+
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import { getOrderDetails } from '../reducers/orderDetailReducer'
 
 const Profile = () => {
   const [email, setEmail] = useState('')
@@ -30,13 +31,13 @@ const Profile = () => {
 
   useEffect(() => {
     if (!user || !user.name || updateUserProfile.status === 'SUCCESS') {
-      dispatch(userUpdateclear())
+      dispatch(updateUserProfileReset())
       dispatch(getUserProfile('profile'))
     }
 
     setName(user.name)
     setEmail(user.email)
-  }, [dispatch, userInfo])
+  }, [dispatch, userInfo, updateUserProfile.status])
 
   const submitHandler = e => {
     e.preventDefault()
