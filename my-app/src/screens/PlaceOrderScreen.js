@@ -33,7 +33,6 @@ const PlaceOrderScreen = () => {
 
   const payment = useSelector(state => state.payment)
   const { Payment } = payment
-
   const confirmedOrder = useSelector(state => state.createdOrder)
   const { order } = confirmedOrder
 
