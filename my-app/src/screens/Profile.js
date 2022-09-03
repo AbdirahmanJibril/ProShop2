@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
-
 import { useNavigate } from 'react-router-dom'
-import { Button, Form, Row, Col } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Button, Form, Row, Col, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile } from '../reducers/userReducers/userDetailSlice'
-import { getOrderDetails } from '../reducers/orderDetailReducer'
-
 import { updateUserProfile } from '../reducers/userReducers/UpdateUserDetails'
-import { userUpdateclear } from '../reducers/userReducers/UserUpdateSlice'
+import { getMyOrderList } from '../reducers/MyOrdersReducer'
 import Message from '../components/Message'
+import Loader from '../components/Loader'
 
 const Profile = () => {
   const [email, setEmail] = useState('')
