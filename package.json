@@ -10,7 +10,8 @@
     "client": "npm start --prefix my-app",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node bakend/seeder",
-    "data:destroy": "node bakend/seeder -d"
+    "data:destroy": "node bakend/seeder -d",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix my-app && npm run build --prefix my-app"
   },
   "author": "Abdirahman",
   "license": "ISC",
