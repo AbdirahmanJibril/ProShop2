@@ -9,7 +9,7 @@ const Product = ({ product }) => {
       <Col>
         <Card className='my-3 p-3 rounded'>
           <Link to={`/product/${product._id}`}>
-            <Card.Img variant='top' src={product.image} variant='top' />
+            <Card.Img variant='top' src={product.image} />
           </Link>
           <Card.Body>
             <Card.Text>

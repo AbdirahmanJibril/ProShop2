@@ -9,7 +9,7 @@ import App from './App'
 import ProductScreen from './screens/productScreen'
 import CartScreen from './screens/CartScreen'
 import ShippingScreen from './screens/shippingScreen'
-import reportWebVitals from './reportWebVitals'
+
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
@@ -30,6 +30,12 @@ ReactDOM.render(
       <Routes>
         <Route path='/' element={<App />}>
           <Route index element={<HomeScreen />} />
+          <Route path='/search/:keyword' element={<HomeScreen />} />
+          <Route path='/page/:pageNumber' element={<HomeScreen />} />
+          <Route
+            path='/search/:keyword/page/:pageNumber'
+            element={<HomeScreen />}
+          />
           <Route path='/login' element={<LoginScreen />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/register' element={<RegisterScreen />} />
@@ -49,6 +55,10 @@ ReactDOM.render(
             element={<ProductEditScreen />}
           />
           <Route path='admin/productlist' element={<ProductListScreen />} />
+          <Route
+            path='admin/productlist/:pageNumber'
+            element={<ProductListScreen />}
+          />
 
           <Route path='/myorders' element={<MyOrders />} />
         </Route>
@@ -57,8 +67,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()

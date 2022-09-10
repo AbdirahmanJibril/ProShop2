@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { login } from '../reducers/userReducers/userLoginSlice'
-import { getOrderList } from '../reducers/OrderListSlice'
+
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

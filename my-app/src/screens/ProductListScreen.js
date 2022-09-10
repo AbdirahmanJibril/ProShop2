@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+
+import { useNavigate, useParams } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,8 +11,13 @@ import {
   productCreateReset,
 } from '../reducers/ProductCreateSlice'
 import Loader from '../components/Loader'
+import Paginate from '../components/Paginate'
 
 const ProductListScreen = () => {
+  const params = useParams()
+  const keyword = params.keyword
+  const pageNumber = params.pageNumber
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -20,7 +26,7 @@ const ProductListScreen = () => {
     productDelete
 
   const productList = useSelector(state => state.productList)
-  const { products, status, error } = productList
+  const { products, page, pages } = productList
 
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
@@ -31,7 +37,7 @@ const ProductListScreen = () => {
   useEffect(() => {
     dispatch(productCreateReset())
     if (userInfo && userInfo.isAdmin) {
-      dispatch(getProducts())
+      dispatch(getProducts('', pageNumber))
     } else {
       navigate('/login')
     }
@@ -46,6 +52,7 @@ const ProductListScreen = () => {
     navigate,
     productCreateStatus,
     productDeleted,
+    keyword,
   ])
 
   const createProductHandler = () => {
@@ -119,6 +126,12 @@ const ProductListScreen = () => {
           ))}
         </tbody>
       </Table>
+      <Paginate
+        page={page}
+        pages={pages}
+        pageNumber={pageNumber}
+        isAdmin={true}
+      />
     </>
   )
 }

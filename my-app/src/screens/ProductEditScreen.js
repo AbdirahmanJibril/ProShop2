@@ -5,10 +5,7 @@ import { Form, Button, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import { editProduct, productEditReset } from '../reducers/ProductEditSlice'
-import {
-  getProduct,
-  productDetailReset,
-} from '../reducers/productDetailReducer'
+import { getProduct } from '../reducers/productDetailReducer'
 
 const ProductEditScreen = () => {
   const params = useParams()
@@ -30,7 +27,7 @@ const ProductEditScreen = () => {
   const dispatch = useDispatch()
 
   const productedit = useSelector(state => state.productedit)
-  const { product: productEdited, status: productEditStatus } = productedit
+  const { status: productEditStatus } = productedit
 
   useEffect(() => {
     if (productEditStatus === 'SUCCESS') {

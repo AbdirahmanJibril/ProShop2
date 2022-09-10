@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Button, Form, Row, Col, Table } from 'react-bootstrap'
+
+import { Button, Form, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile } from '../reducers/userReducers/userDetailSlice'
 import { updateUserProfileReset } from '../reducers/userReducers/UpdateUserDetails'
 
 import Message from '../components/Message'
-import Loader from '../components/Loader'
-import { getOrderDetails } from '../reducers/orderDetailReducer'
 
 const Profile = () => {
   const [email, setEmail] = useState('')
@@ -19,7 +17,6 @@ const Profile = () => {
   const [err, setErr] = useState('')
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const userProfile = useSelector(state => state.userProfile)
   const { error, user } = userProfile
@@ -37,7 +34,7 @@ const Profile = () => {
 
     setName(user.name)
     setEmail(user.email)
-  }, [dispatch, userInfo, updateUserProfile.status])
+  }, [dispatch, userInfo, user, updateUserProfile.status])
 
   const submitHandler = e => {
     e.preventDefault()
@@ -49,10 +46,6 @@ const Profile = () => {
       setMessage('Profile updated')
       setErr('')
     }
-  }
-  const loadOrderDetail = orderId => {
-    dispatch(getOrderDetails(orderId))
-    navigate(`/viewOrder/${orderId}`)
   }
 
   return (

@@ -21,6 +21,8 @@ import productCreateSlice from './reducers/ProductCreateSlice'
 import producEditSlice from './reducers/ProductEditSlice'
 import OrderListSlice from './reducers/OrderListSlice'
 import orderDeliverSlice from './reducers/orderDeliverSlice'
+import ProductReviewCreateSlice from './reducers/ProductReviewCreateSlice'
+import productTopRatedSlice from './reducers/productTopRatedSlice'
 
 export default configureStore({
   reducer: {
@@ -29,6 +31,8 @@ export default configureStore({
     productDelete: ProductDeleteSlice,
     productcreate: productCreateSlice,
     productedit: producEditSlice,
+    productReviewCreate: ProductReviewCreateSlice,
+    productTopRated: productTopRatedSlice,
     cart: cartReducerSlice,
     payment: paymentSlice,
     orderpay: orderPaySlice,

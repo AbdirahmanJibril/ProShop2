@@ -4,7 +4,7 @@ import axios from 'axios'
 // product list slice
 export const productDetailSlice = createSlice({
   name: 'productDetail',
-  initialState: { product: {}, review: {} },
+  initialState: { product: { reviews: [] } },
   reducers: {
     PRODUCT_DETAIL_REQUEST: state => {
       state.status = 'LOADING'

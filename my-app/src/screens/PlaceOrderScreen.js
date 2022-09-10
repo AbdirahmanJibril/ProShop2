@@ -72,7 +72,7 @@ const PlaceOrderScreen = () => {
     dispatch(ORDER_DETAILS_RESET())
 
     dispatch(getOrderDetails(order._id))
-  }, [dispatch, confirmedOrder.status])
+  }, [dispatch, order._id, confirmedOrder.status])
 
   const goToPayment = () => {
     navigate(`/viewOrder/${order._id}`)

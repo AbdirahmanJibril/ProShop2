@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { registerShipping } from '../reducers/shippingRducer'
 
 const ShippingScreen = () => {
-  const shipping = useSelector(state => state.shipping)
-
   const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
   const [postalCode, setPostalCode] = useState()

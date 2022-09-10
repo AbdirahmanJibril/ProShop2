@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { clearUserDetail, getUserProfile } from './userDetailSlice'
+
 import { logout } from './userLoginSlice'
 
 const userUpdateSlice = createSlice({

@@ -7,10 +7,8 @@ import { logout } from '../reducers/userReducers/userLoginSlice'
 import { useNavigate } from 'react-router-dom'
 import { clearOrder } from '../reducers/orderReucer'
 import { clearCartItems } from '../reducers/cartReducer'
-import {
-  clearUserDetail,
-  getUserProfile,
-} from '../reducers/userReducers/userDetailSlice'
+import { clearUserDetail } from '../reducers/userReducers/userDetailSlice'
+import SearchBox from './SearchBox'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -36,7 +34,7 @@ const Header = () => {
           <LinkContainer to='/'>
             <Navbar.Brand>Proshop</Navbar.Brand>
           </LinkContainer>
-
+          <SearchBox />
           <Navbar.Toggle aria-controls='basic-navbar-nav ' />
           <Navbar.Collapse id='basic-navbar-nav '>
             <Nav className='ms-auto'>
@@ -69,6 +67,7 @@ const Header = () => {
                   </Nav.Link>
                 </Nav.Item>
               )}
+
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminmenu'>
                   <LinkContainer to='/admin/userlist'>

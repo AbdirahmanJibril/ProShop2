@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
-import { Button, Form, Row, Col, Table } from 'react-bootstrap'
+import { Button, Row, Col, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMyOrderList } from '../reducers/MyOrdersReducer'
 import { getOrderDetails } from '../reducers/orderDetailReducer'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { useNavigate } from 'react-router-dom'
-import { getUserProfile } from '../reducers/userReducers/userDetailSlice'
 
 const MyOrders = () => {
   const dispatch = useDispatch()
@@ -24,7 +23,7 @@ const MyOrders = () => {
     } else {
       navigate('/login')
     }
-  }, [dispatch])
+  }, [dispatch, userInfo, navigate])
 
   const loadOrderDetail = orderId => {
     dispatch(getOrderDetails(orderId))

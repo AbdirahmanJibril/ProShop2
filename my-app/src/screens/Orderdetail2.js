@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { payOrder } from '../reducers/orderPayReducer'
-import { clearCartItems, removeFromCart } from '../reducers/cartReducer'
+import { clearCartItems } from '../reducers/cartReducer'
 import { clearUserDetail } from '../reducers/userReducers/userDetailSlice'
-import {
-  getOrderDetails,
-  orderDetailReset,
-} from '../reducers/orderDetailReducer'
+import { getOrderDetails } from '../reducers/orderDetailReducer'
 import { PayPalButton } from 'react-paypal-button-v2'
 import {
   ListGroup,
@@ -25,7 +22,7 @@ import { deliverOrder, orderDeliverReset } from '../reducers/orderDeliverSlice'
 
 const Orderdetail2 = () => {
   const params = useParams()
-  const navigate = useNavigate()
+
   const dispatch = useDispatch()
 
   const orderDeliver = useSelector(state => state.orderdeliver)
@@ -47,7 +44,7 @@ const Orderdetail2 = () => {
       dispatch(orderPayReset())
       dispatch(orderDeliverReset())
     }
-  }, [dispatch, params.id])
+  }, [dispatch, orderDetail.isDelivered, params.id])
 
   const successPaymentHandler = paymentResult => {
     dispatch(payOrder(orderSuccess.orderDetail._id, paymentResult))
@@ -163,7 +160,7 @@ const Orderdetail2 = () => {
               </ListGroup.Item>
               {userInfo && !userInfo.isAdmin ? (
                 !orderSuccess.orderDetail.isPaid ? (
-                  orderDetail.status === 'LOADING' ? (
+                  !PayPalButton ? (
                     <Loader />
                   ) : (
                     <ListGroup.Item>

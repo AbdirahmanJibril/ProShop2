@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
+
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { getOrderList, clearOrderList } from '../reducers/OrderListSlice'
+import { getOrderList } from '../reducers/OrderListSlice'
 import { getOrderDetails } from '../reducers/orderDetailReducer'
 
 const OrderList = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  const orderSuccess = useSelector(state => state.viewOrderDetail)
-  const { orderDetail } = orderSuccess
 
   const showOrderList = useSelector(state => state.Orders)
   const { orders } = showOrderList
@@ -34,9 +31,6 @@ const OrderList = () => {
     navigate(`/viewOrder/${id}`)
   }
 
-  const orderDeleteHandler = id => {
-    ///
-  }
   return (
     <>
       <h1>ORDERS</h1>
