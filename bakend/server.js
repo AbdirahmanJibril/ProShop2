@@ -33,9 +33,6 @@ app.use('/api/search', searchProductRoute)
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
-app.get('/api/config/paypal', (req, re) => {
-  res.send(PAYPAL_CLIENT_ID)
-})
 app.use(notFound)
 app.use(errorHandler)
 
