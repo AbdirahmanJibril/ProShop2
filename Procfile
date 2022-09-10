@@ -1,1 +1,1 @@
-web: bakend/server.js
+web: node bakend/server.js
