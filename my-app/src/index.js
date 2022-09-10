@@ -9,7 +9,6 @@ import App from './App'
 import ProductScreen from './screens/productScreen'
 import CartScreen from './screens/CartScreen'
 import ShippingScreen from './screens/shippingScreen'
-
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
@@ -45,9 +44,7 @@ ReactDOM.render(
           <Route path='payment' element={<PaymentScreen />} />
           <Route path='placeorder' element={<PlaceOrderScreen />} />
           <Route path='admin/orderlist' element={<OrderList />} />
-          {/* <Route path='admin/orders/:id' element={<OrderListDetail/>}/> */}
           <Route path='viewOrder/:id' element={<Orderdetail2 />} />
-
           <Route path='admin/userlist' element={<UserListScreen />} />
           <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
           <Route
