@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Row, Col, Card, Alert } from 'react-bootstrap'
+import { Row, Col, Card } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
 import Rating from '../components/Rating'
 import Paginate from '../components/Paginate'

@@ -19,7 +19,9 @@ h2 {
 .rating span {
   margin: 0.1rem;
 }
-
+a {
+  text-decoration: none;
+}
 /* carousel */
 .carousel-item-next,
 .carousel-item-prev,

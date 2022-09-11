@@ -53,6 +53,7 @@ const ProductListScreen = () => {
     productCreateStatus,
     productDeleted,
     keyword,
+    pageNumber,
   ])
 
   const createProductHandler = () => {
