@@ -13,7 +13,7 @@ const HomeScreen = () => {
   const params = useParams()
   const pageNumber = params.pageNumber || 1
   const keyword = params.keyword
-  console.log(keyword)
+
   const productList = useSelector(state => state.productList)
   const dispatch = useDispatch()
   const { products, status, error, pages, page } = productList
