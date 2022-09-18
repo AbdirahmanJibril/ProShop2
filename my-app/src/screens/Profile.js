@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Form, Row, Col } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { Button, Form, Row, Col, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserProfile } from '../reducers/userReducers/userDetailSlice'
-import { updateUserProfileReset } from '../reducers/userReducers/UpdateUserDetails'
+import {
+  getUserProfile,
+  clearUserDetail,
+} from '../reducers/userReducers/userDetailSlice'
+import {
+  updateUserProfileReset,
+  updateUserProfile,
+} from '../reducers/userReducers/UpdateUserDetails'
 
 import Message from '../components/Message'
+import { logout } from '../reducers/userReducers/userLoginSlice'
 
 const Profile = () => {
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
@@ -19,20 +28,25 @@ const Profile = () => {
   const userProfile = useSelector(state => state.userProfile)
   const { error, user } = userProfile
 
-  const updateUserProfile = useSelector(state => state.updateUserProfile)
+  const updatedUserProfile = useSelector(state => state.updateUserProfile)
+  const { status } = updatedUserProfile
 
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
 
   useEffect(() => {
-    if (!user || !user.name || updateUserProfile.status === 'SUCCESS') {
+    if (!userInfo || status === 'UPDATE_USER_PROFILE_SUCCESS') {
+      dispatch(logout())
+      dispatch(clearUserDetail())
+      navigate('/login')
+    } else if (!user || !user.name) {
       dispatch(updateUserProfileReset())
       dispatch(getUserProfile('profile'))
+    } else {
+      setName(user.name)
+      setEmail(user.email)
     }
-
-    setName(user.name)
-    setEmail(user.email)
-  }, [dispatch, userInfo, user, updateUserProfile.status])
+  }, [dispatch, navigate, userInfo, user.name, user, status])
 
   const submitHandler = e => {
     e.preventDefault()
@@ -50,6 +64,7 @@ const Profile = () => {
     <div>
       <Row className='justify-content-center'>
         <Col md={8}>
+          <Alert variant='danger'>Profile update will cause logout</Alert>
           {message && message.length > 0 ? (
             <Message variant='success'>{message}</Message>
           ) : (

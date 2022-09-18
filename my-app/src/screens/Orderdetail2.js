@@ -6,6 +6,7 @@ import { clearCartItems } from '../reducers/cartReducer'
 import { clearUserDetail } from '../reducers/userReducers/userDetailSlice'
 import { getOrderDetails } from '../reducers/orderDetailReducer'
 import { PayPalButton } from 'react-paypal-button-v2'
+
 import {
   ListGroup,
   Row,
@@ -81,7 +82,8 @@ const Orderdetail2 = () => {
           <ListGroup.Item style={{ textAlign: 'left', margin: '30px auto' }}>
             {orderSuccess.orderDetail.isDelivered ? (
               <Alert variant='success'>
-                Delivered on {orderSuccess.orderDetail.deliveredAt}
+                Delivered on{' '}
+                {orderSuccess.orderDetail.deliveredAt.substring(0, 10)}
               </Alert>
             ) : (
               <Alert variant='danger'>Not Delivered</Alert>
@@ -160,18 +162,14 @@ const Orderdetail2 = () => {
               </ListGroup.Item>
               {userInfo && !userInfo.isAdmin ? (
                 !orderSuccess.orderDetail.isPaid ? (
-                  !PayPalButton ? (
-                    <Loader />
-                  ) : (
-                    <ListGroup.Item>
-                      <PayPalButton
-                        options={{
-                          'client-id': process.env.REACT_APP_PAYPAL_CLIENT_ID,
-                        }}
-                        amount={orderSuccess.orderDetail.totalPrice}
-                        onSuccess={successPaymentHandler}></PayPalButton>
-                    </ListGroup.Item>
-                  )
+                  <ListGroup.Item>
+                    <PayPalButton
+                      options={{
+                        'client-id': process.env.REACT_APP_PAYPAL_CLIENT_ID,
+                      }}
+                      amount={orderSuccess.orderDetail.totalPrice}
+                      onSuccess={successPaymentHandler}></PayPalButton>
+                  </ListGroup.Item>
                 ) : (
                   <ListGroup.Item variant='flush'>
                     <Alert variant='success'>
@@ -189,12 +187,14 @@ const Orderdetail2 = () => {
                 orderDetail.isPaid &&
                 !orderDetail.isDelivered && (
                   <ListGroup.Item>
-                    <Button
-                      type='button'
-                      className='btn btn-block'
-                      onClick={deliverHandler}>
-                      Mark As Delivered
-                    </Button>
+                    <div className='d-grid gap-2'>
+                      <Button
+                        type='button'
+                        className='btn btn-block'
+                        onClick={deliverHandler}>
+                        Mark As Delivered
+                      </Button>
+                    </div>
                   </ListGroup.Item>
                 )}
             </ListGroup>

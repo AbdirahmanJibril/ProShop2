@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrderList } from '../reducers/OrderListSlice'
@@ -69,14 +68,12 @@ const OrderList = () => {
                 )}
               </td>
               <td>
-                {/* <LinkContainer to={`/viewOrder/${order._id}`}> */}
                 <Button
                   variant='light'
                   className='btn-sm'
                   onClick={() => vieworder(order._id)}>
                   Details
                 </Button>
-                {/* </LinkContainer> */}
               </td>
             </tr>
           ))}

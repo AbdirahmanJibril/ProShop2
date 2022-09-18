@@ -1,28 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-
+import { logout } from './userLoginSlice'
 //local storage set with user data
-// const userInfoFromStorage = localStorage.getItem('userInfo')
-//   ? JSON.parse(localStorage.getItem('userInfo'))
-//   : null
+const userInfoFromStorage = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo'))
+  : null
 
 export const updateUserProfileSlice = createSlice({
   name: 'updateUserProfile',
-  initialState: {},
+  initialState: { userInfo: userInfoFromStorage },
   reducers: {
     UPDATE_USER_PROFILE_REQUREST: state => {
-      state.status = 'UPDATE_USER_PROFILE REQUEST'
+      state.status = 'UPDATE_USER_PROFILE_REQUEST'
     },
     UPDATE_USER_PROFILE_SUCCESS: (state, action) => {
-      state.status = 'UPDATE_USER_PROFILE SUCCESS'
+      state.status = 'UPDATE_USER_PROFILE_SUCCESS'
       state.userInfo = action.payload
     },
     UPDATE_USER_PROFILE_FAIL: (state, action) => {
-      state.status = 'UPDATE_USER_PROFILE FAILED'
+      state.status = 'UPDATE_USER_PROFILE_FAILED'
       state.error = action.payload
     },
     UPDATE_USER_PROFILE_RESET: state => {
-      return {}
+      state.userInfo = {}
     },
   },
 })
@@ -43,8 +43,7 @@ const updateUserProfile = user => async (dispatch, getState) => {
     }
     const { data } = await axios.put('/api/users/profile', user, config)
     dispatch(UPDATE_USER_PROFILE_SUCCESS(data))
-
-    // localStorage.setItem('userInfo', JSON.stringify(data))
+    dispatch(logout())
   } catch (error) {
     dispatch(
       UPDATE_USER_PROFILE_FAIL(
@@ -57,7 +56,7 @@ const updateUserProfile = user => async (dispatch, getState) => {
 }
 
 const updateUserProfileReset = () => async dispatch => {
-  dispatch(UPDATE_USER_PROFILE_REQUREST())
+  dispatch(UPDATE_USER_PROFILE_RESET())
 }
 updateUserProfile()
 updateUserProfileReset()
